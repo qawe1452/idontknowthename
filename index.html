@@ -141,18 +141,92 @@
     let mainPlayer = null;
     let targetPlayer = '';
 
-    const db = {
-        m: {
-            easy: [{ text: "主動與對象握手並介紹自己", img: "https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?w=500" }],
-            normal: [{ text: "幫對象輕輕按摩肩膀 30 秒", img: "https://images.unsplash.com/photo-1544161515-4ae6ce6ca8b8?w=500" }],
-            hard: [{ text: "給對象一個暖心的擁抱 10 秒", img: "https://images.unsplash.com/photo-1517365830460-955ce3ccd263?w=500" }]
-        },
-        f: {
-            easy: [{ text: "對著對象做一個可愛的表情", img: "https://images.unsplash.com/photo-1520315342629-6ea920342047?w=500" }],
-            normal: [{ text: "與對象合照一張並上傳動態", img: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500" }],
-            hard: [{ text: "給對象一個深情的擁抱", img: "https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=500" }]
-        }
-    };
+	const db = {
+    	m: {
+        	easy: {
+            		toOthers: [{ text: "十指緊扣對視10秒", img: "https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?w=500" },
+                                { text: "在對方耳邊dirty talk", img: "https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?w=500" },
+                                { text: "把對方的腳抓來聞", img: "https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?w=500" }, 
+                                { text: "和對方吃同一根pocky", img: "https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?w=500" }],
+            		toSelf: [{ text: "被打一下屁股", img: "https://images.unsplash.com/photo-1513151233558-d860c5398176?w=500" },
+				                { text: "脫一件", img: "https://images.unsplash.com/photo-1513151233558-d860c5398176?w=500" }]
+        		},
+        	
+            normal: {
+            		toOthers: [{ text: "舔對方脖子/耳朵/腋下10秒", img: "https://images.unsplash.com/photo-1544161515-4ae6ce6ca8b8?w=500" },
+                                { text: "親舔對方肚子10秒", img: "https://images.unsplash.com/photo-1544161515-4ae6ce6ca8b8?w=500" },
+                                { text: "把對方鞋子襪子脫掉，舔腳趾10秒", img: "https://images.unsplash.com/photo-1544161515-4ae6ce6ca8b8?w=500" },
+                                { text: "從背後揉對方的奶15秒鐘", img: "https://images.unsplash.com/photo-1544161515-4ae6ce6ca8b8?w=500" },
+                                { text: "隔著內衣挑逗對方奶頭15秒鐘", img: "https://images.unsplash.com/photo-1544161515-4ae6ce6ca8b8?w=500" },
+                                { text: "隔著內褲按摩小穴15秒鐘", img: "https://images.unsplash.com/photo-1544161515-4ae6ce6ca8b8?w=500" },
+                                { text: "伸進對方褲子裡幫忙按摩15秒", img: "https://images.unsplash.com/photo-1544161515-4ae6ce6ca8b8?w=500" },],
+            		toSelf: [{ text: "脫一件衣服/褲子/內褲/內衣", img: "https://images.unsplash.com/photo-1516251193007-45ef944abb8c?w=500" },]
+        		},
+        	
+            hard: {
+            		toOthers: [{ text: "把酒倒在對方身上，用舌頭舔乾淨", img: "https://images.unsplash.com/photo-1517365830460-955ce3ccd263?w=500" },
+                                { text: "給對方控射30秒", img: "https://images.unsplash.com/photo-1517365830460-955ce3ccd263?w=500" },
+                                { text: "脫掉對方內衣，吸舔咬對方奶頭10秒", img: "https://images.unsplash.com/photo-1517365830460-955ce3ccd263?w=500" },
+                                { text: "用嘴巴幫對方脫掉內衣/內褲", img: "https://images.unsplash.com/photo-1517365830460-955ce3ccd263?w=500" },
+                                { text: "和對方舌吻10秒鐘", img: "https://images.unsplash.com/photo-1517365830460-955ce3ccd263?w=500" },
+                                { text: "躺下來臉朝上，讓對方直接坐上來10秒鐘", img: "https://images.unsplash.com/photo-1517365830460-955ce3ccd263?w=500" },
+                                { text: "一口氣幫女生從腳舔到大腿內側", img: "https://images.unsplash.com/photo-1517365830460-955ce3ccd263?w=500" },
+                                { text: "舔女生屁穴", img: "https://images.unsplash.com/photo-1517365830460-955ce3ccd263?w=500" },
+                                { text: "用肉棒甩對方臉3下", img: "https://images.unsplash.com/photo-1517365830460-955ce3ccd263?w=500" }],
+            		toSelf: [{ text: "被眼罩蒙上眼，固定姿勢，不能遮擋任何一個部位，任由對方做任何事情30秒", img: "https://images.unsplash.com/photo-1518196775791-2e87561337bf?w=500" },
+                        { text: "脫掉褲子和內褲開合跳10下", img: "https://images.unsplash.com/photo-1518196775791-2e87561337bf?w=500" },]
+        		}
+    		},
+
+    	f: {
+        	easy: {
+            		toOthers: [{ text: "十指緊扣對視對視10秒", img: "https://images.unsplash.com/photo-1520315342629-6ea920342047?w=500" },
+                                { text: "在對方耳邊dirty talk", img: "https://images.unsplash.com/photo-1520315342629-6ea920342047?w=500" },
+                                { text: "被打一下屁股", img: "https://images.unsplash.com/photo-1520315342629-6ea920342047?w=500" },
+                                { text: "和對方吃同一根pocky", img: "https://images.unsplash.com/photo-1520315342629-6ea920342047?w=500" },],
+            		toSelf: [{ text: "脫一件", img: "https://images.unsplash.com/photo-1490730141103-6cac27aaab94?w=500" },
+                                { text: "擺出性感姿勢", img: "https://images.unsplash.com/photo-1490730141103-6cac27aaab94?w=500" },
+                                { text: "示範如何嬌喘", img: "https://images.unsplash.com/photo-1490730141103-6cac27aaab94?w=500" }]
+        		},
+       		normal: {
+            		toOthers: [{ text: "從背後隔著衣服挑逗對方奶頭10秒", img: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500" },
+                                { text: "用腳幫忙隔著褲子幫忙尻20秒", img: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500" },
+                                { text: "穿著內褲，幫男方素股", img: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500" },
+                                { text: "幫男方脫下褲子，並想辦法幫他用硬", img: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500" },
+                                { text: "把內褲脫下來丟給對方戴在臉上1分鐘 (途中繼續遊戲)", img: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500" },
+                                { text: "隔著褲子摸對方肉棒，猜測size如何", img: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500" },
+                                { text: "坐在對方大腿上，用屁股磨蹭10秒鐘", img: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500" },
+                                { text: "抓著對方手指，示範如何吃肉棒", img: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500" },
+                                { text: "隔著現有的衣服，抱住對方，用胸埋住對方的臉", img: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500" },
+                                { text: "伸舌頭裝母狗樣的說出一句話 (由對方決定一句話)", img: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500" },
+                                { text: "讓對方在自己屁股上寫字並猜出是甚麼字", img: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500" },
+                                { text: "舔脖子/耳朵", img: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500" },
+                    ],
+            		toSelf: [{ text: "掀起衣服讓大家揉奶各10秒鐘", img: "https://images.unsplash.com/photo-1485579149621-3123dd979885?w=500" },
+                                { text: "脫一件衣服/褲子/內褲/內衣", img: "https://images.unsplash.com/photo-1485579149621-3123dd979885?w=500" },
+                                { text: "把自己最有自信的部位展現給大家看並介紹", img: "https://images.unsplash.com/photo-1485579149621-3123dd979885?w=500" },
+                    ]
+        		},
+        	hard: {
+            		toOthers: [{ text: "脫下褲子並趴下翹高屁股，乞求對方：「拜託主人打我屁股」，並數出5下", img: "https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=500" },
+                        { text: "躺在床上張開腿，任由對方做出任何行動30秒", img: "https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=500" },
+                        { text: "把酒倒在對方身上，用舌頭舔乾淨", img: "https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=500" },
+                        { text: "用嘴巴幫對方脫掉內褲", img: "https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=500" },
+                        { text: "和對方舌吻10秒鐘", img: "https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=500" },
+                        { text: "跪坐在地上，讓對方踩自己", img: "https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=500" },
+                        { text: "讓對方用肉棒甩自己臉5下，並展現一臉享受的表情", img: "https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=500" },
+                        { text: "69 (持續20秒)", img: "https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=500" },
+                        { text: "素股 (15秒)", img: "https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=500" },
+                    ],
+            		toSelf: [{ text: "被眼罩蒙上眼，透過嘴巴感受並猜出對方的肉棒", img: "https://images.unsplash.com/photo-1547153760-18fc86324498?w=500" },
+                        { text: "裸舞30秒", img: "https://images.unsplash.com/photo-1547153760-18fc86324498?w=500" },
+                        { text: "在大家面前玩玩具45秒，但不能高潮和潮吹", img: "https://images.unsplash.com/photo-1547153760-18fc86324498?w=500" },
+                        { text: "全裸M字腿，手比Ya並擺出阿黑顏", img: "https://images.unsplash.com/photo-1547153760-18fc86324498?w=500" },
+                        { text: "插入玩具後繼續遊戲", img: "https://images.unsplash.com/photo-1547153760-18fc86324498?w=500" },
+                    ]
+        		}
+    		}
+	};
 
     function addInput(type) {
         const container = document.getElementById(type + 'Inputs');
@@ -211,37 +285,47 @@
 }
 
     function generateCards() {
-        const grid = document.getElementById('cardGrid');
-        grid.innerHTML = '';
-        for (let i = 1; i <= 10; i++) {
-            const card = document.createElement('div');
-            card.className = 'card';
-            card.innerHTML = `<div class="card-inner"><div class="card-face card-back">?</div><div class="card-face card-front">任務</div></div>`;
-            card.onclick = () => {
-                if (card.classList.contains('flipped')) return;
-                card.classList.add('flipped');
-                setTimeout(() => {
-                    const pool = db[mainPlayer.gender][currentDiff];
-                    const task = pool[Math.floor(Math.random() * pool.length)];
-                    document.getElementById('finalMain').innerText = mainPlayer.name;
-                    
-                    const targetEl = document.getElementById('finalTarget');
-                    if (targetPlayer === mainPlayer.name) {
-                        targetEl.innerText = "你自己 (羞恥挑戰!)";
-                        targetEl.style.color = "#e74c3c";
-                    } else {
-                        targetEl.innerText = targetPlayer;
-                        targetEl.style.color = (mainPlayer.gender === 'm' ? 'var(--female-color)' : 'var(--male-color)');
-                    }
+    const grid = document.getElementById('cardGrid');
+    grid.innerHTML = '';
 
-                    document.getElementById('finalCommand').innerText = task.text;
-                    document.getElementById('missionImg').src = task.img;
-                    document.getElementById('resultOverlay').style.display = 'flex';
-                }, 600);
-            };
-            grid.appendChild(card);
-        }
+    for (let i = 1; i <= 10; i++) {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `<div class="card-inner"><div class="card-face card-back">?</div><div class="card-face card-front">任務</div></div>`;
+        card.onclick = () => {
+            if (card.classList.contains('flipped')) return;
+            card.classList.add('flipped');
+            
+            setTimeout(() => {
+                // 判斷是否為自己
+                const isSelf = (targetPlayer === mainPlayer.name);
+                
+                // 根據「性別」->「難度」->「對象類型」選擇題庫
+                const taskType = isSelf ? 'toSelf' : 'toOthers';
+                const pool = db[mainPlayer.gender][currentDiff][taskType];
+                
+                // 隨機抽選任務
+                const task = pool[Math.floor(Math.random() * pool.length)];
+                
+                document.getElementById('finalMain').innerText = mainPlayer.name;
+                const targetEl = document.getElementById('finalTarget');
+                
+                if (isSelf) {
+                    targetEl.innerText = "你自己";
+                    targetEl.style.color = "#e74c3c";
+                } else {
+                    targetEl.innerText = targetPlayer;
+                    targetEl.style.color = (mainPlayer.gender === 'm' ? 'var(--female-color)' : 'var(--male-color)');
+                }
+
+                document.getElementById('finalCommand').innerText = task.text;
+                document.getElementById('missionImg').src = task.img;
+                document.getElementById('resultOverlay').style.display = 'flex';
+            }, 600);
+        };
+        grid.appendChild(card);
     }
+}
 
     function resetGame() {
 
